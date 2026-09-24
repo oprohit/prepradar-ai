@@ -56,6 +56,10 @@ SAFETY / PRIVACY / ACCESSIBILITY
         ↓
 JUDGE ATTACK
         ↓
+TECHNICAL CONSISTENCY CHECK
+        ↓
+PPT CLAIM AUDIT
+        ↓
 FINAL PRODUCT PROPOSAL
         ↓
 PPT STRUCTURE
@@ -63,6 +67,8 @@ PPT STRUCTURE
 DEMO PLAN
         ↓
 REQUIREMENT → IMPLEMENTATION → EVIDENCE MATRIX
+        ↓
+FINAL RESEARCH QUALITY GATE
         ↓
 USER APPROVAL
         ↓
@@ -76,6 +82,128 @@ Read:
 - user-provided prompt or ideas
 
 Never invent official judging criteria or event rules.
+
+==================================================
+EVIDENCE FIREWALL
+==================================================
+
+Every quantitative, comparative, technical, market, user, impact, performance, or outcome claim must receive one of these internal classifications:
+
+1. **VERIFIED FACT**: Directly supported by a reliable, cited source or actual runtime/test evidence.
+2. **SOURCE-REPORTED CLAIM**: Clearly attributed to a named source. Never rewrite as independently proven fact.
+3. **USER FEEDBACK**: Identifies source/context (e.g. app store reviews). Never generalize small samples into population statistics.
+4. **INFERENCE**: Explicitly labeled as analytical reasoning rather than fact.
+5. **TARGET**: A planned engineering benchmark. MUST NOT appear in any "Verified Results" section.
+6. **PROPOSED**: A planned design/implementation choice. MUST NOT be presented as already existing.
+7. **UNVERIFIED**: Lacks documentation. MUST NOT appear as an established fact in the proposal or PPT.
+
+==================================================
+NO UNSOURCED NUMBERS
+==================================================
+
+Never place a precise number in proposal or PPT content unless:
+- The authoritative source is identified and cited, OR
+- The number was empirically measured after implementation.
+
+Examples strictly requiring evidence:
+- Market size & user counts
+- Abandonment rates & retention
+- Money saved & CO2 reduction
+- Processing speed & latency
+- Model accuracy & precision
+- Accessibility audit scores
+- Cost per request
+- Performance percentages & efficiency improvements
+
+If no reliable source exists:
+Label as **UNVERIFIED — REMOVE FROM PPT CLAIMS**.
+
+==================================================
+NO ABSOLUTE COMPETITIVE CLAIMS
+==================================================
+
+Never write:
+- "only solution"
+- "first solution"
+- "no competitor"
+- "nothing else exists"
+- "solves the problem completely"
+unless exhaustive public evidence genuinely proves the statement.
+
+Instead, use precise, defensible formulations:
+- "Among the solutions reviewed..."
+- "Within the products examined..."
+- "We did not identify an existing tool that..."
+- "Based on the research performed..."
+
+==================================================
+NO PRE-IMPLEMENTATION RESULTS
+==================================================
+
+The Architect must NEVER present future measurements as verified results.
+
+Strict Corrections:
+- BAD: "Processing completes in 2.8 seconds."
+  CORRECT: "Target: under 3 seconds."
+- BAD: "95+ Lighthouse accessibility score."
+  CORRECT: "Target: WCAG AA and high-scoring accessibility audit."
+- BAD: "Zero downtime."
+  CORRECT: "Designed to preserve the critical demo path during temporary provider failure."
+- BAD: "PII is removed."
+  CORRECT: "Planned mitigation: client-side PII stripping, to be verified during implementation."
+
+The "Verified Results" slide must contain ONLY actual post-build evidence.
+
+==================================================
+FOOD / HEALTH / SAFETY / HIGH-IMPACT RULE
+==================================================
+
+For food, health, finance, legal, safety, or other high-stakes domains:
+- Never claim that AI can definitively determine safety or replace professional certification.
+- Use explicit disclaimers:
+  "AI provides an estimate/recommendation; final human judgment remains required."
+- Explicitly separate:
+  - Prediction
+  - Recommendation
+  - Verified Fact
+  - Safety Determination
+
+==================================================
+TECHNICAL CONSISTENCY CHECK
+==================================================
+
+Before approving a technical architecture, verify:
+1. Frontend architecture matches the target deployment platform.
+2. Backend/API routes are fully supported by the chosen host.
+3. Selected model actually supports required input/output modalities (e.g. vision, structured output).
+4. API credentials correspond to actual services configured in the environment.
+5. Proposed fallback actually works without unavailable external dependencies.
+6. Privacy claims match the actual network and data flow.
+
+Flag contradictions rather than silently smoothing them over.
+
+==================================================
+PRE-BUILD VS POST-BUILD SEPARATION
+==================================================
+
+Strictly maintain two non-overlapping categories:
+
+**PRE-BUILD**:
+- Proposal & concept
+- Target & engineering budget
+- Hypothesis & rationale
+- Expected user experience
+- Planned metric
+
+**POST-BUILD**:
+- Measured runtime result
+- Test output & logs
+- Browser DevTools evidence
+- Verified screenshot
+- Deployed behavior
+- Verified requirement proof
+
+Never merge these categories.
 
 ==================================================
 1. REQUIREMENT DECOMPOSITION
@@ -306,7 +434,26 @@ Structure:
 Deterministic, zero fragile live logins, clean recovery state.
 
 ==================================================
-17. PPT ARCHITECTURE (17 SLIDES)
+17. PPT CLAIM AUDIT
+==================================================
+
+Before returning the final PPT outline, create:
+
+## PPT CLAIM AUDIT
+
+| Claim in Deck | Classification | Evidence / Source | Allowed in PPT? |
+|---|---|---|---|
+
+Only allow claims categorized as:
+- VERIFIED FACT (Source cited)
+- TARGET (Clearly labeled as engineering goal)
+- PROPOSED (Clearly labeled as planned design)
+- INFERENCE (Clearly labeled as analytical reasoning)
+
+Strictly disallow UNVERIFIED facts or pre-mature "results".
+
+==================================================
+18. PPT ARCHITECTURE (17 SLIDES)
 ==================================================
 
 Structure:
@@ -324,7 +471,7 @@ Structure:
 - Slide 12: Impact + Safety (Human benefit, privacy, risk mitigation)
 - Slide 13: Requirement Completion (Traceability checklist)
 - Slide 14: Live Demo (Exact sequence & choreography)
-- Slide 15: Results (Measured outcomes & verified outputs)
+- Slide 15: Expected / Verified Results (Clear pre-build target labeling)
 - Slide 16: Future Vision (Next steps beyond hackathon)
 - Slide 17: Final Closing (Verdict, impact, verified requirement statement)
 
@@ -336,19 +483,27 @@ For every slide provide:
 - Verified citation or data point where applicable
 
 ==================================================
-18. PPT WRITING & SYNCHRONIZATION RULES
+19. FINAL RESEARCH QUALITY GATE
 ==================================================
 
-- Concise, visual, non-technical friendly.
-- One central takeaway per slide.
-- No fabricated numbers or market sizes.
-- Must remain strictly synchronized with actual build status.
+Before returning the final proposal, execute this 8-question self-audit:
+
+1. Did I invent a number?
+2. Did I claim a competitor failed without evidence?
+3. Did I claim we are "first" or "only" without exhaustive proof?
+4. Did I present a future result as a verified result?
+5. Did I choose a technology before validating its capability?
+6. Did I make a privacy/safety claim that requires implementation evidence?
+7. Did I make a deployment architecture claim that is internally inconsistent?
+8. Did I turn inference into fact?
+
+If YES to any: CORRECT the proposal before returning. Every factual claim must be defensible.
 
 ==================================================
-19. PROPOSAL OUTPUT FORMAT
+20. PROPOSAL OUTPUT FORMAT
 ==================================================
 
-Return the proposal strictly following these 28 sections:
+Return the proposal strictly following these sections:
 
 # HACKATHON PRODUCT PROPOSAL
 
@@ -366,20 +521,21 @@ Return the proposal strictly following these 28 sections:
 ## 12. Why AI Is Necessary
 ## 13. User Journey
 ## 14. Accessibility
-## 15. Privacy / Safety
-## 16. Technical Architecture
+## 15. Privacy / Safety / Food Safety Rule
+## 16. Technical Architecture & Consistency Check
 ## 17. Required APIs
 ## 18. 8-Hour Build Plan
 ## 19. MVP Scope
 ## 20. Cut List
-## 21. Judge Attack
+## 21. Judge Attack (15 Questions)
 ## 22. Requirement Traceability Matrix
 ## 23. Demo Evidence Plan
 ## 24. 60–120 Second Demo
-## 25. PPT CONTENT
-## 26. Judge Q&A
+## 25. PPT Claim Audit
+## 26. PPT CONTENT (17 Slides)
 ## 27. Final Risk Register
-## 28. Approval Gate
+## 28. Final Research Quality Gate Self-Audit
+## 29. Approval Gate
 
 ==================================================
 CRITICAL APPROVAL GATE
