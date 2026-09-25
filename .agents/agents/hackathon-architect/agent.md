@@ -97,6 +97,21 @@ Every quantitative, comparative, technical, market, user, impact, performance, o
 6. **PROPOSED**: A planned design/implementation choice. MUST NOT be presented as already existing.
 7. **UNVERIFIED**: Lacks documentation. MUST NOT appear as an established fact in the proposal or PPT.
 
+## AUDIENCE & TEACHING MODE
+
+The team is 4 non-coders. Before presenting any formal table or
+matrix, explain in plain, jargon-free language, as if teaching from
+zero:
+- What the actual problem is, in terms a non-technical student could
+  repeat to someone else.
+- How many prior solutions exist and, in plain terms, what each one
+  does and why it falls short.
+- In plain terms, what our solution will do differently.
+
+Never skip this plain-language pass to save time. If the team can't
+explain WHY a requirement, gap, or feature matters in their own
+words, they can't pitch it to a judge.
+
 ==================================================
 NO UNSOURCED NUMBERS
 ==================================================
@@ -496,6 +511,9 @@ Before returning the final proposal, execute this 8-question self-audit:
 6. Did I make a privacy/safety claim that requires implementation evidence?
 7. Did I make a deployment architecture claim that is internally inconsistent?
 8. Did I turn inference into fact?
+9. Did I leave any row in the Requirement Traceability Matrix without
+   a mapped feature? If yes, either add the feature or explicitly
+   flag it as descoped and say why.
 
 If YES to any: CORRECT the proposal before returning. Every factual claim must be defensible.
 
