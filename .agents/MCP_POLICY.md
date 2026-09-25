@@ -2,9 +2,11 @@
 
 This policy governs the installation and use of Model Context Protocol (MCP) servers in this workspace.
 
+> **Current operating rule:** MCP servers already configured in a user-level configuration are optional capabilities, not automatic dependencies. Use one only when it directly helps the active task and no equivalent local path is better. A successful call does not prove a provider plan, quota, cost, or suitability. On `429`, quota exhaustion, `402`, billing-required, auth/permission failure, or repeated timeout, stop that provider and use the fallback in `TOOL_ROUTING.md`. Never enable billing, upgrades, trials, auto-recharge, or paid add-ons on the user's behalf.
+
 ---
 
-## Baseline Servers (Pre-Installed)
+## Historical Minimal Baseline
 
 1. **`chrome-devtools`**: Runtime browser automation, DOM inspection, console/network error capture, and accessibility checks (`chrome-devtools-mcp@latest --isolated`).
 2. **`context7`**: Direct retrieval of current library and framework documentation without training data hallucinations (`@upstash/context7-mcp`).
@@ -13,7 +15,7 @@ This policy governs the installation and use of Model Context Protocol (MCP) ser
 
 ## Addition Policy for Specialist Servers
 
-Additional MCP servers may **only** be added after the hackathon problem statement is known and the technical architecture is finalized.
+Additional MCP servers should be added only after the hackathon problem statement and technical architecture justify them. Existing user-configured servers remain optional and are not automatically invoked.
 
 Every candidate server must satisfy five mandatory criteria before installation:
 1. **Directly Relevant**: Solves a concrete problem required by the project brief.

@@ -22,11 +22,11 @@ This document serves as an on-demand reference for how skills are used across th
 * **`frontend-ui-engineering`**: Craft intentional, polished, accessible UI and prevent generic "AI-generated" aesthetics (active when UI exists).
 
 ### 4. API / BACKEND (Conditional)
-* **`api-and-interface-design`**: Activate only if the selected project features custom API design or intricate backend contracts.
+* **`source-driven-development`** and **`security-and-hardening`**: Activate when the selected project includes custom APIs, authentication, storage, or third-party services.
 
 ### 5. VERIFY
 * **`test-driven-development`**: Protect critical application and AI pipelines with automated validation.
-* **`browser-testing-with-devtools`**: Validate runtime browser behavior, inspect console errors, network failures, and UI responsiveness.
+* **`webapp-testing`**: Validate runtime browser behavior; use **`browser-testing-with-devtools`** for deeper DOM, console, network, or performance diagnosis.
 * **`debugging-and-error-recovery`**: Break out of "try this fix" loops with systematic root-cause diagnosis.
 
 ### 6. REVIEW
@@ -39,15 +39,9 @@ This document serves as an on-demand reference for how skills are used across th
 
 ---
 
-## Deferred / Conditional Skills
+## Conditional Skills
 
-The following skills are cataloged but deferred until project architecture demands them:
-* **`performance-optimization`**: Activate only when measurement identifies a tangible bottleneck.
-* **`observability-and-instrumentation`**: Activate only when runtime telemetry/metrics add clear value.
-* **`git-workflow-and-versioning`**: Activate if team branching/merging complexity justifies it.
-* **`ci-cd-and-automation`**: Activate only if automated build/deploy pipelines are required.
-* **`documentation-and-adrs`**: Activate only when complex architectural trade-offs require formal record.
-* **`deprecation-and-migration`**: Activate only when migrating legacy components.
+Use `mcp-builder`, `pdf`, `xlsx`, `web-artifacts-builder`, or `skill-creator` only when the selected architecture or requested output requires their specialized capability. Do not refer to absent skills as active workflow dependencies.
 
 ---
 
@@ -57,3 +51,4 @@ The following skills are cataloged but deferred until project architecture deman
 2. **Smallest relevant set**: Select only the 1-2 skills relevant to the current task.
 3. **Preserve context budget**: Reading large skill files unnecessarily burns context window tokens.
 4. **Context refresh**: Start a fresh conversation turn or clean context when previous threads become bloated or stale.
+5. **Service selection**: A skill does not force a provider. Use relevant configured APIs/MCPs under `AGENTS.md` and stop on provider-limit/auth failures.

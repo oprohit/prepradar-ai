@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "environment": "DEMO_MODE",
+  "scenarioId": "campus-safety-command-demo",
+  "systemStatus": {
+    "monitoringStatus": "ACTIVE",
+    "aiTriageLatencyMs": 140,
+    "activeSensors": 142,
+    "campusGeofence": "CENTRAL_CAMPUS_DISTRICT"
+  },
+  "metrics": {
+    "legacyResponseTimeAvgMin": 14.2,
+    "aiResponseTimeAvgSec": 1.8,
+    "incidentsAutoTriagedCount": 84,
+    "falsePositiveReductionPct": 91.4
+  },
+  "incidents": [
+    {
+      "id": "INC-DEMO-001",
+      "title": "Chemical fume alert - Science Complex B",
+      "type": "HAZMAT / CHEMICAL",
+      "severity": "CRITICAL",
+      "location": "Science Complex B, Lab 402",
+      "dispatchStatus": "RESPONDING",
+      "aiTriage": {
+        "confidenceScore": 0.98,
+        "recommendedAction": "Evacuate the affected floor and dispatch the hazmat team."
+      }
+    },
+    {
+      "id": "INC-DEMO-002",
+      "title": "Medical emergency - Student Activity Center",
+      "type": "MEDICAL",
+      "severity": "HIGH",
+      "location": "Student Union, Gymnasium",
+      "dispatchStatus": "ON_SCENE",
+      "aiTriage": {
+        "confidenceScore": 0.95,
+        "recommendedAction": "Dispatch the nearest AED and campus EMT unit."
+      }
+    }
+  ]
+}

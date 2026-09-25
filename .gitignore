@@ -2,6 +2,13 @@
 .env
 .env.*
 !.env.example
+credentials.json
+token.json
+*.pem
+*.key
+
+# Generated local demo state; the checked-in template is the source of truth.
+demo-data/scenario.json
 
 # Dependencies
 node_modules/

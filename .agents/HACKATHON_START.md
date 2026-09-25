@@ -5,10 +5,10 @@
 3. Enter judging rubric
 4. Enter allowed technology
 5. Enter required APIs
-6. Check current Antigravity quota
-7. Check application API availability
+6. Check current Antigravity quota if the environment exposes it
+7. Check only the application API needed for the selected architecture: `node execution/check-apis.mjs --live --service <name>`
 8. Choose project direction / prompt ideas
-9. Run `hackathon-architect` subagent to perform deep requirement extraction, prior-art research, failure/gap analysis, 17-slide PPT outline, and 28-section product proposal
+9. Use `hackathon-architect` only when a research-heavy proposal is useful; otherwise define the primary journey and acceptance criteria directly
 10. Review proposal, PPT, and Requirement Traceability Matrix
 11. Explicit User Approval Gate: `APPROVE` / `MODIFY` / `COMPARE` / `RESEARCH MORE` / `REJECT`
 12. (Only after APPROVE) Write SPEC.md and lock primary user journey

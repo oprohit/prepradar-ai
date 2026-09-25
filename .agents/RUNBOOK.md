@@ -2,6 +2,8 @@
 
 A concise operational roadmap across the 8-hour hackathon timeline.
 
+> **Current routing:** use the current `AGENTS.md`, `.agents/TOOL_ROUTING.md`, directives, and execution scripts over historical provider/command examples below. Configure or invoke a service only when it is relevant; use `node execution/check-apis.mjs --live --service <name>` for a targeted readiness probe.
+
 ---
 
 ## Timeline Execution
@@ -11,7 +13,7 @@ A concise operational roadmap across the 8-hour hackathon timeline.
 - Verify active Antigravity model and quota status.
 - Verify baseline MCP connections (`chrome-devtools`, `context7`).
 - Verify installed core skills.
-- Verify API environment placeholders (`.env.example`, `scripts/check-apis.mjs`).
+- Verify API environment placeholders (`.env.example`, `execution/check-apis.mjs`).
 - Verify git status and `.gitignore` hygiene.
 - Fill `HACKATHON_BRIEF.md` once official rules are released.
 
@@ -22,7 +24,7 @@ A concise operational roadmap across the 8-hour hackathon timeline.
 - Explicit Approval Gate: User must explicitly choose `APPROVE`, `MODIFY`, `COMPARE`, `RESEARCH MORE`, or `REJECT`.
 - (Only after APPROVE) Lock primary user journey in `SPEC.md` and generate `REQUIREMENT_TRACEABILITY_MATRIX.md`.
 - Run `/plan` to outline architecture and execution milestones.
-- Lock technology stack and install conditional MCP servers only if essential.
+- Lock technology stack; use only the already configured MCPs that are essential, or add one only with explicit user approval.
 
 ### EARLY BUILD (10:00 - 12:30)
 - Implement the smallest end-to-end vertical slice (`incremental-implementation`).
@@ -39,7 +41,7 @@ A concise operational roadmap across the 8-hour hackathon timeline.
 ### LATE (14:30 - 16:00)
 - Invoke `demo-critic` subagent to audit the running application for flaws.
 - Fix top 3-5 high-impact problems; reject trivial low-value distractions.
-- Deploy to staging/production hosting (Vercel, Cloud Run, Firebase, etc.).
+- Deploy through one selected configured hosting provider, then verify the public URL and critical path.
 - Verify the deployed public URL against the critical path.
 
 ### FINAL (16:00 - 17:00)

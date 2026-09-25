@@ -2,6 +2,8 @@
 
 This document tracks workspace configuration overhead, token context boundaries, and operational guidelines for the 8-hour hackathon.
 
+> **Current operating state (supersedes historical counts below):** consult `AGENTS.md`, `TOOL_ROUTING.md`, and the actual configured tools. Configured MCPs are optional capabilities, not an active baseline. API readiness uses `node execution/check-apis.mjs` offline by default and targeted `--live --service <name>` probes only when needed. Provider limits/auth failures select a fallback; no provider is automatically used or assumed free.
+
 ---
 
 ## Workspace Customization Summary
