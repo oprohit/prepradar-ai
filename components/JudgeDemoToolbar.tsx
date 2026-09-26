@@ -11,6 +11,7 @@ interface JudgeDemoToolbarProps {
   targetTier: TargetTier;
   onTierChange: (tier: TargetTier) => void;
   activePresetLabel: string;
+  onOpenGuidedDemo: () => void;
 }
 
 export function JudgeDemoToolbar({
@@ -19,7 +20,8 @@ export function JudgeDemoToolbar({
   onReset,
   targetTier,
   onTierChange,
-  activePresetLabel
+  activePresetLabel,
+  onOpenGuidedDemo
 }: JudgeDemoToolbarProps) {
   return (
     <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-6 backdrop-blur-md">
@@ -62,6 +64,13 @@ export function JudgeDemoToolbar({
 
         {/* Right: Quick Demo Preset Injectors */}
         <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={onOpenGuidedDemo}
+            className="inline-flex items-center gap-1.5 text-xs font-bold bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-3.5 py-1.5 rounded-xl shadow-lg shadow-emerald-500/20 transition-all ring-1 ring-emerald-300"
+          >
+            <Sparkles className="w-3.5 h-3.5" /> Watch 7-Step Journey (90s Demo)
+          </button>
+
           <button
             onClick={onLoadPresetA}
             className="inline-flex items-center gap-1.5 text-xs font-bold bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 px-3 py-1.5 rounded-xl transition-all"

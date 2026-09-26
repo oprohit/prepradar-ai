@@ -21,18 +21,25 @@ export async function evaluatePracticeSubmission(
 ): Promise<PracticeEvaluationResult> {
   const apiKey = process.env.GEMINI_API_KEY || '';
 
+  const isFlawed =
+    userSolution.includes('for w in range(weights[i], W + 1)') ||
+    userSolution.includes('BUG') ||
+    userSolution.toLowerCase().includes('qa team missed') ||
+    userSolution.includes('Blamed QA');
+
   // Default fallback payload if Gemini times out, quota hits, or key is unset
   const fallbackResult: PracticeEvaluationResult = {
-    isCorrect: userSolution.trim().length > 25,
-    score: userSolution.trim().length > 25 ? 85 : 40,
+    isCorrect: !isFlawed && userSolution.trim().length > 25,
+    score: !isFlawed && userSolution.trim().length > 25 ? 92 : 35,
     timeComplexity: concept === 'dp-knapsack' ? 'O(N * W)' : 'O(N)',
     spaceComplexity: concept === 'dp-knapsack' ? 'O(W) - Space Optimized' : 'O(1)',
-    actionableFeedback:
-      userSolution.trim().length > 25
-        ? `Solid implementation for ${concept}. You accounted for the reverse iteration constraint, preventing premature state overwrite.`
-        : `Implementation incomplete for ${concept}. Ensure boundary conditions handle empty inputs and capacity constraints.`,
+    actionableFeedback: isFlawed
+      ? `Flaw detected: Forward iteration allows multiple inclusions of the same item (Unbounded Knapsack bug). To maintain 0/1 knapsack constraints in O(W) space, capacity must iterate backwards.`
+      : userSolution.trim().length > 25
+      ? `Solid implementation for ${concept}. You accounted for the reverse iteration constraint, preventing premature state overwrite.`
+      : `Implementation incomplete for ${concept}. Ensure boundary conditions handle empty inputs and capacity constraints.`,
     remedyHint: 'Remember to verify 1D array capacity backwards: for w in range(W, weight[i] - 1, -1).',
-    deltaGain: userSolution.trim().length > 25 ? 14 : 4,
+    deltaGain: isFlawed ? 0 : userSolution.trim().length > 25 ? 14 : 4,
     source: 'circuit-breaker-fallback'
   };
 

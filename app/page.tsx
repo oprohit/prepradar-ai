@@ -14,6 +14,7 @@ import { DiagnosticQuiz } from '@/components/DiagnosticQuiz';
 import { SprintPlanView } from '@/components/SprintPlanView';
 import { PracticeSandbox } from '@/components/PracticeSandbox';
 import { JudgeDemoToolbar } from '@/components/JudgeDemoToolbar';
+import { GuidedJourneyDemo } from '@/components/GuidedJourneyDemo';
 import { Sparkles, BrainCircuit, ShieldCheck, Zap, BookOpen, Layers } from 'lucide-react';
 
 export default function PlacementDashboard() {
@@ -22,6 +23,7 @@ export default function PlacementDashboard() {
   const [activePresetLabel, setActivePresetLabel] = useState<string>('Profile A (Product Tier 1: Zoho/Amazon)');
   const [reassessedDelta, setReassessedDelta] = useState<number>(0);
   const [activePracticeTask, setActivePracticeTask] = useState<DailySprintTask | null>(null);
+  const [isGuidedDemoOpen, setIsGuidedDemoOpen] = useState<boolean>(false);
 
   // Compute weakness vector strictly from actual answers given (all 4 pillars measured)
   const weaknessVector = useMemo(() => {
@@ -87,7 +89,15 @@ export default function PlacementDashboard() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="text-right hidden sm:block">
+          <button
+            onClick={() => setIsGuidedDemoOpen(true)}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 text-xs font-black px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-500/25 transition-all transform hover:scale-[1.02] ring-2 ring-emerald-400/50"
+          >
+            <Sparkles className="w-4 h-4 fill-slate-950" />
+            <span>Run 90s Guided Demo</span>
+          </button>
+
+          <div className="text-right hidden sm:block border-l border-slate-800 pl-3">
             <span className="text-[10px] text-slate-500 uppercase font-bold block">Status</span>
             <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -105,6 +115,7 @@ export default function PlacementDashboard() {
         targetTier={targetTier}
         onTierChange={setTargetTier}
         activePresetLabel={activePresetLabel}
+        onOpenGuidedDemo={() => setIsGuidedDemoOpen(true)}
       />
 
       {/* Top Section: Radar & Diagnostic Test */}
@@ -165,6 +176,23 @@ export default function PlacementDashboard() {
           }}
         />
       </div>
+
+      {/* Guided Student Journey 90s Demo Modal */}
+      <GuidedJourneyDemo
+        isOpen={isGuidedDemoOpen}
+        onClose={() => setIsGuidedDemoOpen(false)}
+        targetTier={targetTier}
+        onTierChange={setTargetTier}
+        answers={answers}
+        onAnswerChange={handleAnswerChange}
+        weaknessVector={weaknessVector}
+        onLoadPresetA={handleLoadPresetA}
+        onLoadPresetB={handleLoadPresetB}
+        onReset={handleReset}
+        reassessedDelta={reassessedDelta}
+        onApplyDelta={handleApplyDelta}
+        activePresetLabel={activePresetLabel}
+      />
 
       {/* Footer Benchmarks */}
       <footer className="border-t border-slate-800/80 pt-6 text-center text-xs text-slate-500">
