@@ -13,8 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(__filename), '..');
 const packagePath = path.join(projectRoot, 'package.json');
 
-function run(command, args) {
-  execFileSync(command, args, { cwd: projectRoot, stdio: 'inherit' });
+function run(command, args, useShell = false) {
+  execFileSync(command, args, { cwd: projectRoot, stdio: 'inherit', shell: useShell });
 }
 
 function scriptFiles(directory) {
@@ -30,7 +30,7 @@ console.log('BUILD VERIFICATION');
 let syntaxFailure = false;
 for (const file of [...scriptFiles('execution'), ...scriptFiles('scripts')]) {
   try {
-    run(process.execPath, ['--check', file]);
+    run(process.execPath, ['--check', file], false);
     console.log(`PASS: ${file} syntax`);
   } catch {
     console.error(`FAIL: ${file} syntax`);
@@ -59,7 +59,7 @@ if (!pkg.scripts?.build) {
 }
 
 try {
-  run(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', 'build']);
+  run(process.platform === 'win32' ? 'npm.cmd' : 'npm', ['run', 'build'], process.platform === 'win32');
   console.log('PASS: production build completed.');
 } catch {
   console.error('FAIL: production build failed.');
