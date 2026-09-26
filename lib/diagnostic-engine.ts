@@ -175,10 +175,36 @@ export function computeWeaknessVector(
   else if (priScore >= 50) statusLabel = 'Placement Competitive';
   else if (priScore >= 25) statusLabel = 'Placement Vulnerable';
 
-  // CRITICAL FIX: Sort missed concepts strictly by lowest pillar score ascending
-  missedItems.sort((a, b) => pillarScores[a.pillar] - pillarScores[b.pillar]);
+  // Sort missed concepts strictly by lowest pillar score ascending to isolate bottom failure domains
+  missedItems.sort((a, b) => {
+    const scoreDiff = pillarScores[a.pillar] - pillarScores[b.pillar];
+    if (scoreDiff !== 0) return scoreDiff;
+    return a.missedQuestionId.localeCompare(b.missedQuestionId);
+  });
 
-  const criticalGaps: CriticalGap[] = missedItems.slice(0, 2).map(item => ({
+  // Isolate bottom 2 failure domains (distinct pillars preferred)
+  const prioritizedItems: typeof missedItems = [];
+  const coveredPillars = new Set<Pillar>();
+
+  for (const item of missedItems) {
+    if (!coveredPillars.has(item.pillar)) {
+      coveredPillars.add(item.pillar);
+      prioritizedItems.push(item);
+    }
+    if (prioritizedItems.length >= 2) break;
+  }
+
+  // If fewer than 2 distinct pillars were missed, backfill with remaining missed concepts from same pillar
+  if (prioritizedItems.length < 2) {
+    for (const item of missedItems) {
+      if (!prioritizedItems.includes(item)) {
+        prioritizedItems.push(item);
+      }
+      if (prioritizedItems.length >= 2) break;
+    }
+  }
+
+  const criticalGaps: CriticalGap[] = prioritizedItems.slice(0, 2).map(item => ({
     pillar: item.pillar,
     concept: item.concept,
     severity: pillarScores[item.pillar] === 0 ? 'critical' : 'moderate',
